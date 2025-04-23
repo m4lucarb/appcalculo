@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f0f0f0;
+      font-family: "Roboto", sans-serif;
+    }
+
+    .phone-frame {
+      max-width: 400px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+    }
+
+    .display {
+      background: #222;
+      color: #fff;
+      font-size: 32px;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: right;
+      margin-bottom: 20px;
+      height: 60px;
+      overflow-x: auto;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .buttons button {
+      padding: 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background-color: #e0e0e0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .buttons button:hover {
+      background-color: #ccc;
+    }
+
+    .buttons .operator {
+      background-color: #6200ee;
+      color: white;
+    }
+
+    .buttons .operator:hover {
+      background-color: #3700b3;
+    }
+
+    .buttons .equals {
+      background-color: #03dac6;
+      color: black;
+    }
+
+    .buttons .equals:hover {
+      background-color: #00c4b4;
+    }
+
+    .buttons .clear {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .buttons .clear:hover {
+      background-color: #c62828;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone-frame">
+    <div id="display" class="display">0</div>
+
+    <div class="buttons">
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button class="operator" onclick="append('/')">÷</button>
+
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button class="operator" onclick="append('*')">×</button>
+
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button class="operator" onclick="append('-')">−</button>
+
+      <button onclick="append('0')">0</button>
+      <button onclick="append('.')">.</button>
+      <button class="equals" onclick="calcular()">=</button>
+      <button class="operator" onclick="append('+')">+</button>
+
+      <button class="clear" style="grid-column: span 4;" onclick="limpar()">C</button>
+    </div>
+  </div>
+
+  <script>
+    let display = document.getElementById('display');
+
+    function append(value) {
+      if (display.innerText === '0') {
+        display.innerText = value;
+      } else {
+        display.innerText += value;
+      }
+    }
+
+    function calcular() {
+      try {
+        display.innerText = eval(display.innerText).toString();
+      } catch (e) {
+        display.innerText = 'Erro';
+      }
+    }
+
+    function limpar() {
+      display.innerText = '0';
+    }
+  </script>
+</body>
+</html>
